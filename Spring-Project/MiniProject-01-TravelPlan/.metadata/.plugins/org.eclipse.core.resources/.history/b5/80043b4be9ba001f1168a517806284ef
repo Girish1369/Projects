@@ -1,0 +1,5 @@
+package com.gbk.service;
+
+public interface ITravelPlanMgmtService {
+
+}

@@ -1,0 +1,62 @@
+package com.gbk.service;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.gbk.entity.TravelPlan;
+import com.gbk.repository.IPlanCategoryRepo;
+import com.gbk.repository.ITravlePlanRepo;
+
+public class TravelPlanMgmtServiceImpl implements ITravelPlanMgmtService {
+
+	@Autowired
+	private IPlanCategoryRepo plancategoryrepo;
+	
+	@Autowired
+	private ITravlePlanRepo travelplanrepo;
+	@Override
+	public String registorTravelPlan(TravelPlan plan) {
+		//save object
+		
+		return null;
+	}
+
+	@Override
+	public Map<Integer, String> getTravelPlanCategories() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TravelPlan> showAllTravelPlan() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TravelPlan showTravelPlanById(Integer planId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String updateTravelPlan(TravelPlan plan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteTravelPlan(TravelPlan planId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String changeTravelPlanStatus(Integer planId, String status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

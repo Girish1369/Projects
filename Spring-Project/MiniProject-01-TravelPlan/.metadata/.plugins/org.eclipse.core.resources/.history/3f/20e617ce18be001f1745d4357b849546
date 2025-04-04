@@ -1,0 +1,37 @@
+server:
+  port: 4041
+spring:
+  application:
+    name: TravelPlan_CRUD
+  datasource:
+    driverClassName: org.h2.Driver
+    password: girishk
+    url: jdbc:h2:mem:testdb
+    username: girishk
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
+    
+    
+    
+    
+    
+    
+plan:
+  module:
+    message:
+      registor-success: Travel plan registor sucessfully with id
+      registor-failure: Travel plan registor failed with id
+      find-by-id-success: Travel plan is found
+      find-by-id-failure: Travel plan is not found
+      update-success: Travel plan is updated
+      update-failure: Travel plan is not found for upadation
+      delete-success: Travel plan is deleted
+      delete-failure: Travel plan is not found for deletion
+      status-change-success: Travel plan status is changed
+      status-change-failure: Travel plan is not found for status change
+      
+      

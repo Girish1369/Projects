@@ -1,0 +1,110 @@
+package com.gbk.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gbk.config.AppConfigProperties;
+import com.gbk.entity.PlanCategory;
+import com.gbk.entity.TravelPlan;
+import com.gbk.repository.IPlanCategoryRepo;
+import com.gbk.repository.ITravlePlanRepo;
+
+@Service
+public class TravelPlanMgmtServiceImpl implements ITravelPlanMgmtService {
+
+	@Autowired
+	private IPlanCategoryRepo plancategoryrepo;
+	
+	@Autowired
+	private ITravlePlanRepo travelplanrepo;
+	
+	private Map<String,String> message;
+	
+	@Autowired
+	public TravelPlanMgmtServiceImpl(AppConfigProperties properties) {
+		message=properties.getMessage();
+	}
+	
+	@Override
+	public String registorTravelPlan(TravelPlan plan) {
+		//save object
+		TravelPlan saved=travelplanrepo.save(plan);
+		
+		return saved.getPlan_id()!=null?message.get("registor-success")+saved.getPlan_id():message.get("registor-failure");
+	}
+
+	@Override
+	public Map<Integer, String> getTravelPlanCategories() {
+		List<PlanCategory> list=plancategoryrepo.findAll();
+		Map<Integer, String> categoriesMap=new HashMap<Integer,String>();
+		list.forEach(categories->categoriesMap.put(categories.getCategory_id(), categories.getCategory_name()));
+		return categoriesMap;
+	}
+
+	@Override
+	public List<TravelPlan> showAllTravelPlan() {
+		// TODO Auto-generated method stub
+		return travelplanrepo.findAll();
+	}
+
+	@Override
+	public TravelPlan showTravelPlanById(Integer planId) {
+		return travelplanrepo.findById(planId).orElseThrow();
+//		Optional<TravelPlan> opt=travelplanrepo.findById(planId);
+//		if(opt.isPresent())
+//			return opt.get();
+//		else
+//			throw new IllegalArgumentException("plan id not found");
+//		
+		
+		
+	}
+
+	@Override
+	public String updateTravelPlan(TravelPlan plan) {
+//		TravelPlan updated=travelplanrepo.save(plan);
+//		return updated.getPlan_id() +"plan updated";
+		Optional<TravelPlan> opt=travelplanrepo.findById(plan.getPlan_id());
+		if(opt.isPresent()) {
+			travelplanrepo.save(plan);
+			return plan.getPlan_id()+":: is updated sucesfully";
+		}else {
+			return plan.getPlan_id()+"::Enter Id is not present";
+					
+		}
+	}
+
+	@Override
+	public String deleteTravelPlan(Integer planId) {
+		Optional<TravelPlan> opt=travelplanrepo.findById(planId);
+		if(opt.isPresent()) {
+			travelplanrepo.deleteById(planId);
+			return planId+":: is updated sucesfully";
+		}else {
+			return planId+"::Enter Id is not present";
+					
+		}
+	}
+
+	@Override
+	public String changeTravelPlanStatus(Integer planId, String status) {
+		Optional<TravelPlan> opt=travelplanrepo.findById(planId);
+		if(opt.isPresent()) {
+			TravelPlan plan=opt.get();
+			plan.setActive_sw(status);
+			return planId+":: id status chaged";
+			
+		}else {
+			return planId+":: id not found";
+		}
+		
+	}
+
+	
+
+}

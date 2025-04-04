@@ -1,0 +1,5 @@
+package com.gbk.config;
+
+public class AppConfigProperties {
+
+}

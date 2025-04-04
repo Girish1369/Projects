@@ -1,0 +1,27 @@
+server:
+  port: 4041
+spring:
+  application:
+    name: TravelPlan_CRUD
+  datasource:
+    driverClassName: org.h2.Driver
+    password: girishk
+    url: jdbc:h2:mem:testdb
+    username: girishk
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
+    
+    
+    
+    
+    
+    
+plan:
+  module:
+    message:
+      registor-success: Travel plan registor sucessfully with id
+      registor-failure: Travel plan registor failed with id
