@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<b><i>Account balance:${balance}</i></b>
+<h3 th:text="${balance}" style="color: red; text-align: center;"></h3>
+
+<br>
+<a th:href="@{/logout}">signOut</a>
+<a th:href="@{/}">Home</a>
